@@ -14,6 +14,8 @@
 #include<sys/socket.h>
 // Import netinet/in.h for network related variables and functions
 #include<netinet/in.h>
+// Import arpa/inet.h for inet_pton()
+#include<arpa/inet.h>
 
 int main(int argc, char **argv) {
 	// Define variables socketValue to hold the return value from the socket function
@@ -41,7 +43,7 @@ int main(int argc, char **argv) {
 	
 	// inet_pton is used to assign the IP address given in the command line argument argv[1]
 	// to socketAddress
-	inet_pton(AF_INET, argv[0], &socketAddress, sizeof(socketAddress));
+	inet_pton(AF_INET, argv[1], &socketAddress.sin_addr);
 	
 	// Create a tcp socket
 	socketValue = socket(AF_INET, SOCK_STREAM, 0);
